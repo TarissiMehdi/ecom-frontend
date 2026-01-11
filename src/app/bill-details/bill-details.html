@@ -1,0 +1,103 @@
+@if (billDetails) {
+  <div class="bill-details-container">
+    <!-- En-tête de la facture -->
+    <div class="bill-header">
+      <h1>Facture <span class="bill-id">#{{billId}}</span></h1>
+    </div>
+
+    <div class="row">
+      <!-- Colonne gauche : Informations de la facture -->
+      <div class="col-md-6">
+        <div class="info-card">
+          <div class="card-header">Détails de la facture</div>
+          <div class="card-body p-0">
+            <ul class="list-group info-list">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Facture ID:</strong>
+                <span class="id-display">{{billDetails.id}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Date facture:</strong>
+                <span class="date-display">{{billDetails.billingDate | date :'dd/MM/yyyy'}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>ID Client:</strong>
+                <span class="id-display">{{billDetails.customerId}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne droite : Informations du client -->
+      <div class="col-md-6">
+        <div class="info-card">
+          <div class="card-header">Informations client</div>
+          <div class="card-body p-0">
+            <ul class="list-group info-list">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>ID Client:</strong>
+                <span>{{billDetails.customer.id}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Nom:</strong>
+                <span>{{billDetails.customer.name}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Email:</strong>
+                <span>{{billDetails.customer.email}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section produits -->
+    <div class="products-card mt-4">
+      <div class="card-header">Produits commandés</div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table products-table">
+            <thead>
+            <tr>
+              <th>ID Produit</th>
+              <th>Nom Produit</th>
+              <th class="text-end">Quantité</th>
+              <th class="text-end">Prix unitaire</th>
+              <th class="text-end">Prix</th>
+              <th class="text-end">Montant</th>
+            </tr>
+            </thead>
+            <tbody>
+              @for (pi of billDetails.productitems; track pi) {
+                <tr>
+                  <td class="id-display">{{pi.productId}}</td>
+                  <td>{{pi.product?.name || 'N/A'}}</td>
+                  <td class="text-end">{{pi.quantity}}</td>
+                  <td class="text-end unit-price">{{pi.unitprice | number : '.2'}}</td>
+                  <td class="text-end">{{pi.price | number : '.2'}}</td>
+                  <td class="text-end amount-cell">{{pi.amount | number : '.2'}}</td>
+                </tr>
+              }
+            </tbody>
+            <tfoot>
+            <tr class="total-row">
+              <td colspan="5" class="text-end fw-bold">Total</td>
+              <td class="text-end total-amount">{{billDetails.total | number : '.2'}}</td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Boutons d'action optionnels -->
+    <div class="action-buttons mt-4 text-end">
+      <button class="btn-action btn-back" (click)="goBack()" *ngIf="false">
+        <!-- Cachez cette ligne si vous n'avez pas la fonction goBack() -->
+        <i class="fas fa-arrow-left"></i> Retour
+      </button>
+    </div>
+  </div>
+}

@@ -1,0 +1,32 @@
+<div class="products-container">
+  <div class="products-header">
+    <h1>Liste des Produits</h1>
+    <p class="subtitle">Gestion complète des produits</p>
+  </div>
+
+  <div class="products-table-container">
+    <table class="table products-table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+      </thead>
+
+      @if (products) {
+        <tbody>
+          @for (p of products; track p) {
+            <tr>
+              <td class="id-column">{{ p.id }}</td>
+              <td class="name-column">{{ p.name }}</td>
+              <td class="price-column">{{ p.price }}</td>
+              <td class="quantity-column">{{ p.quantity }}</td>
+            </tr>
+          }
+        </tbody>
+      }
+    </table>
+  </div>
+</div>

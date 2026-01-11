@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container-fluid navbar-container">
+    <!-- Logo/Marque (optionnel) -->
+    <a class="navbar-brand" href="/">
+      <i class="fas fa-store brand-icon"></i>
+      E-Commerce
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <!-- Lien Products -->
+        <li class="nav-item">
+          <a class="nav-link"
+             href="/products"
+             [class.active]="isActive('products')">
+            <i class="fas fa-box nav-icon"></i>
+            Products
+          </a>
+        </li>
+
+        <!-- Lien Customers -->
+        <li class="nav-item">
+          <a class="nav-link"
+             href="/customers"
+             [class.active]="isActive('customers')">
+            <i class="fas fa-users nav-icon"></i>
+            Customers
+          </a>
+        </li>
+
+        <!-- Lien Bills -->
+        <li class="nav-item">
+          <a class="nav-link"
+             href="/bills"
+             [class.active]="isActive('bills')">
+            <i class="fas fa-file-invoice nav-icon"></i>
+            Bills
+          </a>
+        </li>
+
+        <!-- Dropdown optionnel -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+             href="#"
+             role="button"
+             data-bs-toggle="dropdown">
+            <i class="fas fa-cog nav-icon"></i>
+            Settings
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class="fas fa-user-cog"></i>
+                Profile Settings
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class="fas fa-bell"></i>
+                Notifications
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item text-danger" href="#">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
